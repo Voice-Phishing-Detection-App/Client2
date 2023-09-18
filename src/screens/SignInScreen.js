@@ -120,7 +120,7 @@ const SignInScreen = ({navigation}) => {
           <Text> | </Text>
           <Text onPress={() => navigation.push('FindPass')}>비밀번호찾기</Text>
           <Text> | </Text>
-          <Text onPress={() => navigation.push('Agree')}>회원가입</Text>
+          <Text onPress={() => navigation.push('SignUp')}>회원가입</Text>
         </View>
       </View>
     </View>
