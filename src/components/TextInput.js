@@ -2,6 +2,7 @@ import {StyleSheet, Text, TextInput, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {forwardRef, useState} from 'react';
 import {GRAY, BLACK, PRIMARY, WHITE} from '../color';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export const ReturnKeyTypes = {
   DONE: 'done',
@@ -9,8 +10,8 @@ export const ReturnKeyTypes = {
 };
 
 export const IconNames = {
-  EMAIL: 'email',
-  PASSWORD: 'lock',
+  EMAIL: 'mail-outline',
+  PASSWORD: 'lock-closed-outline',
 };
 
 const Input = forwardRef(
@@ -46,7 +47,22 @@ const Input = forwardRef(
             onFocus={() => setIsFocused(true)}
           />
 
-          <View style={styles.icon}></View>
+          <View style={styles.icon}>
+            <Icon
+              name={iconName}
+              size={20}
+              color={(() => {
+                switch (true) {
+                  case isFocused:
+                    return PRIMARY.DEFAULT;
+                  case !!value:
+                    return BLACK;
+                  default:
+                    return GRAY;
+                }
+              })()}
+            />
+          </View>
         </View>
       </View>
     );
