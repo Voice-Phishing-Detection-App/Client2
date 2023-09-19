@@ -8,7 +8,6 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.balloon}>HomeScreen</Text> */}
       <View style={styles.containertop}>
         <Image
           source={require('../../assets/images/Phinocchio.png')}
@@ -25,9 +24,7 @@ const HomeScreen = () => {
             triangleDirection="left"
             triangleOffset="65%"
             height={100}
-            width={180}
-            // onPress={() => console.log('press')}
-          >
+            width={180}>
             <Text style={{fontSize: 14}}>
               문예주님 안녕하세요.{'\n'}오늘 총 신고 기록은{'\n'}3번 있어요.
             </Text>
