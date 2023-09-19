@@ -10,7 +10,7 @@ import {PRIMARY, WHITE} from '../color';
 //   Feather,
 // } from '@expo/vector-icons';
 
-// import SearchScreen from '../screens/SearchScreen';
+import SearchScreen from '../screens/SearchScreen';
 // import ReportScreen from '../screens/ReportScreen';
 // import MyPageScreen from '../screens/MyPageScreen';
 
@@ -41,7 +41,7 @@ const BottomStack = () => {
           // ),
         }}
       />
-      {/* <Tab.Screen
+      <Tab.Screen
         name="Search"
         component={SearchScreen}
         options={{
@@ -50,9 +50,8 @@ const BottomStack = () => {
           // tabBarIcon: ({color, size}) => (
           //   <Ionicons name="md-search-sharp" color={color} size={size} />
           // ),
-          // tabBarBadge: 3, -> 알림 몇개 떠있다 표시하는거임
         }}
-      /> */}
+      />
       {/* <Tab.Screen
         name="Report"
         component={ReportScreen}
