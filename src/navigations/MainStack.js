@@ -2,7 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {PRIMARY, WHITE} from '../color';
 import BottomStack from './BottomStack';
 import SetUpScreen from '../screens/SetUpScreen';
-// import DoubtListScreen from '../screens/DoubtListScreen';
+import DoubtListScreen from '../screens/DoubtListScreen';
 // import PhisingListScreen from '../screens/PhisingListScreen';
 // import CenterListScreen from '../screens/CenterListScreen';
 // import EmergencyNumberScreen from '../screens/EmergencyNumberScreen';
@@ -43,7 +43,7 @@ const MainStack = () => {
           },
         }}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="Doubt"
         component={DoubtListScreen}
         options={{
@@ -56,7 +56,7 @@ const MainStack = () => {
             fontWeight: 'bold',
           },
         }}
-      /> */}
+      />
 
       {/* <Stack.Screen
         name="CenterList"
