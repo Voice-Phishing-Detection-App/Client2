@@ -1,16 +1,16 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
-// import { Feather } from '@expo/vector-icons';/
+import Icon from 'react-native-vector-icons/Ionicons';
 import {BLACK} from '../color';
 
 const IconText = ({text, name, onPress}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      {/* <Feather
+      <Icon
         style={{marginLeft: 30}}
-        name={name ? 'check-circle' : 'circle'}
+        name={name ? 'checkmark-circle-outline' : 'ellipse-outline'}
         size={20}
-      /> */}
+      />
       <Text style={styles.bottomText}>{text}</Text>
     </TouchableOpacity>
   );

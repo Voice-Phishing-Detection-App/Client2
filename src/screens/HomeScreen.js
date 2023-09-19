@@ -3,6 +3,7 @@ import {BLACK, PRIMARY, SBTN, WHITE} from '../color';
 import {Image} from 'react-native';
 import Balloon from 'react-native-balloon';
 import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -38,7 +39,9 @@ const HomeScreen = () => {
               // navigation.navigate('CenterList');
             }}
             hitSlop={10}
-            style={styles.button}></Pressable>
+            style={styles.button}>
+            <Icon name="bulb-outline" size={25} color={WHITE} />
+          </Pressable>
           <Text style={styles.buttontxt}>피싱 도움</Text>
         </View>
         <View>
@@ -47,7 +50,9 @@ const HomeScreen = () => {
               // navigation.navigate('PhisingList');
             }}
             hitSlop={10}
-            style={styles.button}></Pressable>
+            style={styles.button}>
+            <Icon name="chatbox-ellipses-outline" size={25} color={WHITE} />
+          </Pressable>
           <Text style={styles.buttontxt}>피해 사례</Text>
         </View>
         <View>
@@ -57,7 +62,7 @@ const HomeScreen = () => {
             }}
             hitSlop={10}
             style={styles.button}>
-            {/* <Feather name="phone-call" size={25} color={WHITE} /> */}
+            <Icon name="person-outline" size={25} color={WHITE} />
           </Pressable>
           <Text style={styles.buttontxt}>긴급 연락처</Text>
         </View>
@@ -67,7 +72,9 @@ const HomeScreen = () => {
               // navigation.navigate('MyReportList');
             }}
             hitSlop={10}
-            style={styles.button}></Pressable>
+            style={styles.button}>
+            <Icon name="reader-outline" size={25} color={WHITE} />
+          </Pressable>
           <Text style={styles.buttontxt}>신고 기록</Text>
         </View>
       </View>

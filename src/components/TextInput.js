@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {forwardRef, useState} from 'react';
-import {GRAY, BLACK, PRIMARY, WHITE} from '../color';
+import {GRAY, BLACK, PRIMARY} from '../color';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export const ReturnKeyTypes = {

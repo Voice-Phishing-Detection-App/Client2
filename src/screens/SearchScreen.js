@@ -7,13 +7,13 @@ import {
   Pressable,
 } from 'react-native';
 import {BLACK, GRAY, PRIMARY, SBTN, WHITE} from '../color';
-// import { AntDesign } from '@expo/vector-icons';
 import {useState} from 'react';
 import Sbtn from '../components/Sbtn';
 import ReportList from '../components/ReportList';
 import {useNavigation} from '@react-navigation/native';
 import {url} from '../url';
 import SInfo from 'react-native-sensitive-info';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Left = 30;
 
@@ -76,8 +76,8 @@ const SearchScreen = () => {
             onFocus={() => setIsFocused(true)}
           />
           <View style={styles.icon}>
-            {/* <AntDesign
-              name="search1"
+            <Icon
+              name="search-outline"
               size={20}
               color={(() => {
                 switch (true) {
@@ -90,7 +90,7 @@ const SearchScreen = () => {
                     return GRAY;
                 }
               })()}
-            /> */}
+            />
           </View>
           <Sbtn styles2={style2} title={'조회'} onPress={onCheck} />
         </View>
@@ -109,7 +109,7 @@ const SearchScreen = () => {
             onPress={() => {
               navigation.navigate('SearchList', {phoneNumber});
             }}>
-            {/* <AntDesign name="caretright" size={15} color="black" /> */}
+            <Icon name="caret-forward-outline" size={15} color="black" />
             <Text style={{fontSize: 18, marginLeft: 15}}>자세히 보기</Text>
           </Pressable>
         )}
