@@ -7,7 +7,7 @@ import HeaderRightButton from '../components/HeaderRightButton';
 import HeaderLeftButton from '../components/HeaderLeftButton';
 import SearchScreen from '../screens/SearchScreen';
 import ReportScreen from '../screens/ReportScreen';
-// import MyPageScreen from '../screens/MyPageScreen';
+import MyPageScreen from '../screens/MyPageScreen';
 // import DoubtListScreen from '../screens/DoubtListScreen';
 
 const Tab = createBottomTabNavigator();
@@ -60,7 +60,7 @@ const BottomStack = () => {
           ),
         }}
       />
-      {/* <Tab.Screen
+      <Tab.Screen
         name="MyPage"
         component={MyPageScreen}
         options={{
@@ -70,11 +70,11 @@ const BottomStack = () => {
             backgroundColor: PRIMARY.DEFAULT,
           },
           headerTintColor: WHITE,
-          // tabBarIcon: ({color, size}) => (
-          //   <Icon name="person-circle-outline" color={color} size={size} />
-          // ),
+          tabBarIcon: ({color, size}) => (
+            <Icon name="person-circle-outline" color={color} size={size} />
+          ),
         }}
-      /> */}
+      />
       {/* <Stack.Screen
         name="Doubt"
         component={DoubtListScreen}
