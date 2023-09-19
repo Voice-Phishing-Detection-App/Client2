@@ -1,13 +1,11 @@
-import Fcm from './test/Fcm';
-import SignUpScreen from './screens/SignUpScreen';
-import AuthStack from './navigations/AuthStack';
-import {NavigationContainer} from '@react-navigation/native';
+import {UserProvider} from './contexts/UserContext';
+import Navigation from './navigations';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <AuthStack />
-    </NavigationContainer>
+    <UserProvider>
+      <Navigation />
+    </UserProvider>
   );
 };
 
