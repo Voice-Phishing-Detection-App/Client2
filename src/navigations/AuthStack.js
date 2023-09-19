@@ -5,7 +5,7 @@ import {PRIMARY, WHITE} from '../color';
 import FindIDScreen from '../screens/FindIDScreen';
 import FindPassScreen from '../screens/FindPassScreen';
 // import AgreeScreen from '../screens/AgreeScreen';
-// import HeaderLeftBack from '../components/HeaderLeftBack';
+import HeaderLeftBack from '../components/HeaderLeftBack';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +18,7 @@ const AuthStack = () => {
         headerTintColor: PRIMARY.DARK,
         headerTitleStyle: {fontWeight: '700'},
         headerBackTitleVisible: false,
-        // headerLeft: HeaderLeftBack,
+        headerLeft: HeaderLeftBack,
       }}>
       <Stack.Screen
         name="SignIn"

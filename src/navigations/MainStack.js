@@ -8,7 +8,7 @@ import BottomStack from './BottomStack';
 // import EmergencyNumberScreen from '../screens/EmergencyNumberScreen';
 // import MyReportListScreen from '../screens/MyReportListScreen';
 // import ListDetailScreen from '../screens/ListDetailScreen';
-// import HeaderLeftBack from '../components/HeaderLeftBack';
+import HeaderLeftBack from '../components/HeaderLeftBack';
 // import SearchListScreen from '../screens/SearchListScreen';
 const Stack = createNativeStackNavigator();
 //로그인 후 컴포넌트
@@ -22,7 +22,7 @@ const MainStack = () => {
         headerTintColor: PRIMARY.DEFAULT,
         headerTitleStyle: {fontWeight: '700'},
         headerBackTitleVisible: false,
-        // headerLeft: HeaderLeftBack,
+        headerLeft: HeaderLeftBack,
       }}>
       <Stack.Screen
         name="BottomHome"

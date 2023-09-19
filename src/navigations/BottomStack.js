@@ -3,8 +3,8 @@ import HomeScreen from '../screens/HomeScreen';
 import {PRIMARY, WHITE} from '../color';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-// import HeaderRightButton from '../components/HeaderRightButton';
-// import HeaderLeftButton from '../components/HeaderLeftButton';
+import HeaderRightButton from '../components/HeaderRightButton';
+import HeaderLeftButton from '../components/HeaderLeftButton';
 import SearchScreen from '../screens/SearchScreen';
 import ReportScreen from '../screens/ReportScreen';
 // import MyPageScreen from '../screens/MyPageScreen';
@@ -28,8 +28,8 @@ const BottomStack = () => {
         options={{
           title: '피노키오',
           tabBarLabel: '홈',
-          // headerRight: HeaderRightButton,
-          // headerLeft: HeaderLeftButton,
+          headerRight: HeaderRightButton,
+          headerLeft: HeaderLeftButton,
           tabBarIcon: ({color, size}) => (
             <Icon name="home-outline" color={color} size={size} />
           ),
