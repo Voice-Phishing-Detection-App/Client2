@@ -33,37 +33,33 @@ const SearchScreen = () => {
   const [count, setCount] = useState('');
   const [type, setType] = useState([]);
   const onCheck = async () => {
-    try {
-      SInfo.getItem('Token', {}).then(value => {
-        if (value) {
-          // 토큰 있을때
-          fetch(`${url}/report/search`, {
-            method: 'POST',
-            body: JSON.stringify({phoneNumber: phoneValue}),
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
+    SInfo.getItem('Token', {}).then(value => {
+      if (value) {
+        // 토큰 있을때
+        fetch(`${url}/report/search`, {
+          method: 'POST',
+          body: JSON.stringify({phoneNumber: phoneValue}),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${value}`,
+          },
+        })
+          .then(response => response.json())
+          .then(data => {
+            setPhoneNumber(data.phoneNumber);
+            setCount(data.reportCount);
+            const transformedTypes = data.type.map(t => typeToTitle[t] || t);
+            setType(transformedTypes);
+            console.log(data);
           })
-            .then(response => response.json())
-            .then(data => {
-              setPhoneNumber(data.phoneNumber);
-              setCount(data.reportCount);
-              const transformedTypes = data.type.map(t => typeToTitle[t] || t);
-              setType(transformedTypes);
-              console.log(data);
-            })
-            .catch(error => {
-              console.error(error);
-            });
-        } else {
-          // 토큰 없을때
-          console.log('토큰 없음');
-        }
-      });
-    } catch (e) {
-      console.error(e);
-    }
+          .catch(error => {
+            console.error(error);
+          });
+      } else {
+        // 토큰 없을때
+        console.log('토큰 없음');
+      }
+    });
   };
 
   return (

@@ -11,7 +11,7 @@ import {PRIMARY, WHITE} from '../color';
 // } from '@expo/vector-icons';
 
 import SearchScreen from '../screens/SearchScreen';
-// import ReportScreen from '../screens/ReportScreen';
+import ReportScreen from '../screens/ReportScreen';
 // import MyPageScreen from '../screens/MyPageScreen';
 
 // import DoubtListScreen from '../screens/DoubtListScreen';
@@ -52,7 +52,7 @@ const BottomStack = () => {
           // ),
         }}
       />
-      {/* <Tab.Screen
+      <Tab.Screen
         name="Report"
         component={ReportScreen}
         options={{
@@ -65,7 +65,7 @@ const BottomStack = () => {
           //   <MaterialIcons name="policy" color={color} size={size} />
           // ),
         }}
-      /> */}
+      />
       {/* <Tab.Screen
         name="MyPage"
         component={MyPageScreen}
