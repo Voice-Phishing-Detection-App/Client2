@@ -1,7 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {PRIMARY, WHITE} from '../color';
 import BottomStack from './BottomStack';
-// import SetUpScreen from '../screens/SetUpScreen';
+import SetUpScreen from '../screens/SetUpScreen';
 // import DoubtListScreen from '../screens/DoubtListScreen';
 // import PhisingListScreen from '../screens/PhisingListScreen';
 // import CenterListScreen from '../screens/CenterListScreen';
@@ -29,8 +29,7 @@ const MainStack = () => {
         component={BottomStack}
         options={{headerShown: false}}
       />
-      {/*nameprops -> 대문자 선호 */}
-      {/* <Stack.Screen
+      <Stack.Screen
         name="SetUp"
         component={SetUpScreen}
         options={{
@@ -43,7 +42,7 @@ const MainStack = () => {
             fontWeight: '900',
           },
         }}
-      /> */}
+      />
       {/* <Stack.Screen
         name="Doubt"
         component={DoubtListScreen}
