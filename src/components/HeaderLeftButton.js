@@ -9,7 +9,6 @@ const HeaderRightButton = () => {
   return (
     <Pressable
       onPress={() => {
-        console.log('set');
         navigation.navigate('SetUp');
       }}
       hitSlop={10}
