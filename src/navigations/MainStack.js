@@ -3,13 +3,13 @@ import {PRIMARY, WHITE} from '../color';
 import BottomStack from './BottomStack';
 import SetUpScreen from '../screens/SetUpScreen';
 import DoubtListScreen from '../screens/DoubtListScreen';
-// import PhisingListScreen from '../screens/PhisingListScreen';
-// import CenterListScreen from '../screens/CenterListScreen';
-// import EmergencyNumberScreen from '../screens/EmergencyNumberScreen';
-// import MyReportListScreen from '../screens/MyReportListScreen';
-// import ListDetailScreen from '../screens/ListDetailScreen';
+import PhisingListScreen from '../screens/PhisingListScreen';
+import CenterListScreen from '../screens/CenterListScreen';
+import EmergencyNumberScreen from '../screens/EmergencyNumberScreen';
+import MyReportListScreen from '../screens/MyReportListScreen';
+import ListDetailScreen from '../screens/ListDetailScreen';
 import HeaderLeftBack from '../components/HeaderLeftBack';
-// import SearchListScreen from '../screens/SearchListScreen';
+import SearchListScreen from '../screens/SearchListScreen';
 const Stack = createNativeStackNavigator();
 //로그인 후 컴포넌트
 const MainStack = () => {
@@ -58,21 +58,23 @@ const MainStack = () => {
         }}
       />
 
-      {/* <Stack.Screen
-        name="CenterList"
-        component={CenterListScreen}
-        options={{
-          title: '피싱 도움',
-          headerStyle: {
-            backgroundColor: PRIMARY.DEFAULT,
-          },
-          headerTintColor: WHITE,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
-      /> */}
-      {/* <Stack.Screen
+      {
+        <Stack.Screen
+          name="CenterList"
+          component={CenterListScreen}
+          options={{
+            title: '피싱 도움',
+            headerStyle: {
+              backgroundColor: PRIMARY.DEFAULT,
+            },
+            headerTintColor: WHITE,
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+      }
+      <Stack.Screen
         name="PhisingList"
         component={PhisingListScreen}
         options={{
@@ -85,8 +87,8 @@ const MainStack = () => {
             fontWeight: 'bold',
           },
         }}
-      /> */}
-      {/* <Stack.Screen
+      />
+      <Stack.Screen
         name="ListDetail"
         component={ListDetailScreen}
         options={{
@@ -99,8 +101,8 @@ const MainStack = () => {
             fontWeight: 'bold',
           },
         }}
-      /> */}
-      {/* <Stack.Screen
+      />
+      <Stack.Screen
         name="EmergencyNumber"
         component={EmergencyNumberScreen}
         options={{
@@ -113,8 +115,8 @@ const MainStack = () => {
             fontWeight: 'bold',
           },
         }}
-      /> */}
-      {/* <Stack.Screen
+      />
+      <Stack.Screen
         name="MyReportList"
         component={MyReportListScreen}
         options={{
@@ -127,8 +129,8 @@ const MainStack = () => {
             fontWeight: 'bold',
           },
         }}
-      /> */}
-      {/* <Stack.Screen
+      />
+      <Stack.Screen
         name="SearchList"
         component={SearchListScreen}
         options={{
@@ -141,7 +143,7 @@ const MainStack = () => {
             fontWeight: 'bold',
           },
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

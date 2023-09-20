@@ -36,7 +36,7 @@ const HomeScreen = () => {
         <View>
           <Pressable
             onPress={() => {
-              // navigation.navigate('CenterList');
+              navigation.navigate('CenterList');
             }}
             hitSlop={10}
             style={styles.button}>
@@ -47,7 +47,7 @@ const HomeScreen = () => {
         <View>
           <Pressable
             onPress={() => {
-              // navigation.navigate('PhisingList');
+              navigation.navigate('PhisingList');
             }}
             hitSlop={10}
             style={styles.button}>
@@ -58,7 +58,7 @@ const HomeScreen = () => {
         <View>
           <Pressable
             onPress={() => {
-              // navigation.navigate('EmergencyNumber');
+              navigation.navigate('EmergencyNumber');
             }}
             hitSlop={10}
             style={styles.button}>
@@ -69,7 +69,7 @@ const HomeScreen = () => {
         <View>
           <Pressable
             onPress={() => {
-              // navigation.navigate('MyReportList');
+              navigation.navigate('MyReportList');
             }}
             hitSlop={10}
             style={styles.button}>
