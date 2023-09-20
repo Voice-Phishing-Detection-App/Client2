@@ -5,6 +5,7 @@ import TextInput, {IconNames, ReturnKeyTypes} from '../components/TextInput';
 import {PRIMARY} from '../color';
 import PropTypes from 'prop-types';
 import SInfo from 'react-native-sensitive-info';
+import {url} from '../url';
 
 const SignInScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
