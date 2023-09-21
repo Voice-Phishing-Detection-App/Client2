@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">fcm</string>
+    <string name="kakao_app_key">9c7b1414c0f6db37acff936b657d9b81</string>
 </resources>

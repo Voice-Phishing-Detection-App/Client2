@@ -5,6 +5,7 @@ import TextInput, {IconNames, ReturnKeyTypes} from '../components/TextInput';
 import {PRIMARY} from '../color';
 import PropTypes from 'prop-types';
 import SInfo from 'react-native-sensitive-info';
+import * as KakaoLogin from '@react-native-seoul/kakao-login';
 import {url} from '../url';
 
 const SignInScreen = ({navigation}) => {
@@ -62,6 +63,21 @@ const SignInScreen = ({navigation}) => {
     }
   };
 
+  const Kakaologin = () => {
+    KakaoLogin.login()
+      .then(result => {
+        console.log('카카오로그인 성공', JSON.stringify(result));
+        // 여기 통신 코드
+      })
+      .catch(error => {
+        if (error.code === 'E_CANCELLED_OPERATION') {
+          console.log('카카오로그인 취소', error.message);
+        } else {
+          console.log(`카카오로그인 실패(code:${error.code})`, error.message);
+        }
+      });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>피노키오</Text>
@@ -101,12 +117,7 @@ const SignInScreen = ({navigation}) => {
           <View style={styles.line} />
         </View>
         <View style={styles.buttonContainer}>
-          <Button
-            title={'카카오 로그인'}
-            onPress={() => {}}
-            disabled={disabled}
-            isLoading={isLoading}
-          />
+          <Button title={'카카오 로그인'} onPress={Kakaologin} />
         </View>
         <View style={styles.buttonContainer}>
           <Button
