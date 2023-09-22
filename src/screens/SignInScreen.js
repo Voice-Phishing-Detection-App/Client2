@@ -1,5 +1,13 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {View, StyleSheet, Text, Keyboard, Alert} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Keyboard,
+  Alert,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import Button from '../components/Button';
 import TextInput, {IconNames, ReturnKeyTypes} from '../components/TextInput';
 import {PRIMARY} from '../color';
@@ -117,7 +125,9 @@ const SignInScreen = ({navigation}) => {
           <View style={styles.line} />
         </View>
         <View style={styles.buttonContainer}>
-          <Button title={'카카오 로그인'} onPress={Kakaologin} />
+          <TouchableOpacity onPress={Kakaologin}>
+            <Image source={require('../../assets/images/kakao_login.png')} />
+          </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
           <Button
