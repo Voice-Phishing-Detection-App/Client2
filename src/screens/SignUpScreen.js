@@ -14,10 +14,17 @@ const SignUpScreen = ({navigation}) => {
   const passwordRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [fcmToken, setFcmToken] = useState('');
 
   useEffect(() => {
     setDisabled(!name || !email || !password);
   }, [name, email, password]);
+
+  const getFcmToken = async () => {
+    const token = await messaging().getToken();
+    console.log('[FCM Token]', token);
+    setFcmToken(token);
+  };
 
   const onSubmit = async () => {
     if (!disabled && !isLoading) {
@@ -31,6 +38,7 @@ const SignUpScreen = ({navigation}) => {
             id: email,
             password: password,
             phone_number: phone,
+            fcmToken: fcmToken,
           }),
           headers: {
             'Content-Type': 'application/json',
