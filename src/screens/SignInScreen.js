@@ -7,6 +7,7 @@ import {
   Alert,
   TouchableOpacity,
   Image,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import Button from '../components/Button';
 import TextInput, {IconNames, ReturnKeyTypes} from '../components/TextInput';
@@ -22,9 +23,14 @@ const SignInScreen = ({navigation}) => {
   const passwordRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     setDisabled(!email || !password);
   }, [email, password]);
+
+  const handleDismissKeyboard = () => {
+    Keyboard.dismiss();
+  };
 
   const onSubmit = async () => {
     if (!disabled && !isLoading) {
@@ -87,65 +93,70 @@ const SignInScreen = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>피노키오</Text>
-      <View style={styles.view}>
-        <TextInput
-          value={email}
-          onChangeText={text => setEmail(text.trim())}
-          title={'아이디'}
-          returnKeyType={ReturnKeyTypes.NEXT}
-          iconName={IconNames.EMAIL}
-          onSubmitEditing={() => passwordRef.current.focus()}
-        />
-        <TextInput
-          ref={passwordRef}
-          value={password}
-          onChangeText={text => setPassword(text.trim())}
-          title={'비밀번호'}
-          secureTextEntry
-          iconName={IconNames.PASSWORD}
-          onSubmitEditing={onSubmit}
-        />
-      </View>
-      <View style={styles.view2}>
-        <View style={styles.buttonContainer}>
-          <Button
-            title={'로그인'}
-            onPress={onSubmit}
-            disabled={disabled}
-            isLoading={isLoading}
+    <TouchableWithoutFeedback onPress={handleDismissKeyboard}>
+      <View style={styles.container}>
+        <Text style={styles.text}>피노키오</Text>
+        <View style={styles.view}>
+          <TextInput
+            value={email}
+            onChangeText={text => setEmail(text.trim())}
+            title={'아이디'}
+            returnKeyType={ReturnKeyTypes.NEXT}
+            iconName={IconNames.EMAIL}
+            onSubmitEditing={() => passwordRef.current.focus()}
+          />
+          <TextInput
+            ref={passwordRef}
+            value={password}
+            onChangeText={text => setPassword(text.trim())}
+            title={'비밀번호'}
+            secureTextEntry
+            iconName={IconNames.PASSWORD}
+            onSubmitEditing={onSubmit}
           />
         </View>
-        <View style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
-          <View style={styles.line} />
-          <View>
-            <Text style={{width: 40, textAlign: 'center'}}>또는</Text>
+        <View style={styles.view2}>
+          <View style={styles.buttonContainer}>
+            <Button
+              title={'로그인'}
+              onPress={onSubmit}
+              disabled={disabled}
+              isLoading={isLoading}
+            />
           </View>
-          <View style={styles.line} />
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={Kakaologin}>
-            <Image source={require('../../assets/images/kakao_login.png')} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title={'네이버 로그인'}
-            onPress={() => {}}
-            disabled={disabled}
-            isLoading={isLoading}
-          />
-        </View>
-        <View style={styles.textContainer}>
-          <Text onPress={() => navigation.push('FindId')}>아이디찾기</Text>
-          <Text> | </Text>
-          <Text onPress={() => navigation.push('FindPass')}>비밀번호찾기</Text>
-          <Text> | </Text>
-          <Text onPress={() => navigation.push('SignUp')}>회원가입</Text>
+          <View
+            style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
+            <View style={styles.line} />
+            <View>
+              <Text style={{width: 40, textAlign: 'center'}}>또는</Text>
+            </View>
+            <View style={styles.line} />
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={Kakaologin}>
+              <Image source={require('../../assets/images/kakao_login.png')} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              title={'네이버 로그인'}
+              onPress={() => {}}
+              disabled={disabled}
+              isLoading={isLoading}
+            />
+          </View>
+          <View style={styles.textContainer}>
+            <Text onPress={() => navigation.push('FindId')}>아이디찾기</Text>
+            <Text> | </Text>
+            <Text onPress={() => navigation.push('FindPass')}>
+              비밀번호찾기
+            </Text>
+            <Text> | </Text>
+            <Text onPress={() => navigation.push('SignUp')}>회원가입</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
