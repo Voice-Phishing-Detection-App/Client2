@@ -14,6 +14,8 @@ const ListItem = memo(({name, item}) => {
           navigation.navigate('Report', {
             id: item.doubtId,
           });
+        } else if (name == 'CenterList') {
+          console.log('detail x');
         } else {
           navigation.navigate('ListDetail', {
             title: item.title, //임시임
@@ -26,7 +28,7 @@ const ListItem = memo(({name, item}) => {
       {/* <Pressable onPress={() => {}} hitSlop={10}>
         <MaterialCommunityIcons {...checkboxProps} />
       </Pressable> */}
-      {/* {name === 'CenterList' ? (
+      {name === 'CenterList' ? (
         <View style={styles.container}>
           <View style={styles.centerlist}>
             <Text style={styles.task1txt}>{item.task[0]}</Text>
@@ -34,16 +36,16 @@ const ListItem = memo(({name, item}) => {
             <Text style={styles.task1txt}>{item.task[1]}</Text>
           </View>
         </View>
-      ) : ( */}
-      <View style={styles.container}>
-        <View style={styles.task1}>
-          <Text style={styles.task1txt}>{item.title}</Text>
+      ) : (
+        <View style={styles.container}>
+          <View style={styles.task1}>
+            <Text style={styles.task1txt}>{item.title}</Text>
+          </View>
+          <View style={styles.task2}>
+            <Text>{item.registrationDate}</Text>
+          </View>
         </View>
-        <View style={styles.task2}>
-          <Text>{item.registrationDate}</Text>
-        </View>
-      </View>
-      {/* )} */}
+      )}
     </Pressable>
   );
 });

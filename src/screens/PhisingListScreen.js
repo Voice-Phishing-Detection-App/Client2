@@ -11,35 +11,15 @@ const PhisingListScreen = () => {
   const List = [
     {
       id: 1,
-      task: [
-        '저금리 대출 관련해서 보이스피싱',
-        '2023-05-15',
-        'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      ],
+      title: '저금리 대출 관련해서 보이스피싱',
+      registrationDate: '2023-05-15',
+      content: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     },
     {
       id: 2,
-      task: [
-        '저금리 대출 관련해서 보이스피싱',
-        '2023-05-15',
-        'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      ],
-    },
-    {
-      id: 3,
-      task: [
-        '저금리 대출 관련해서 보이스피싱',
-        '2023-05-15',
-        'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      ],
-    },
-    {
-      id: 4,
-      task: [
-        '저금리 대출 관련해서 보이스피싱',
-        '2023-05-15',
-        'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      ],
+      title: '저금리 대출 관련해서 보이스피싱',
+      registrationDate: '2023-05-15',
+      content: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     },
   ];
 

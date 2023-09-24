@@ -8,6 +8,7 @@ import SInfo from 'react-native-sensitive-info';
 const DoubtListScreen = () => {
   const [list, setList] = useState([]);
   useEffect(() => {
+    console.log('doubt');
     check();
   }, []);
 
