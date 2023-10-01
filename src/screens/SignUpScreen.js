@@ -3,6 +3,7 @@ import TextInput, {ReturnKeyTypes} from '../components/TextInput';
 import {useEffect, useRef, useState} from 'react';
 import Button from '../components/Button';
 import {url} from '../url';
+import messaging from '@react-native-firebase/messaging';
 
 const SignUpScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -26,6 +27,10 @@ const SignUpScreen = ({navigation}) => {
     setFcmToken(token);
   };
 
+  useEffect(() => {
+    getFcmToken();
+  }, []);
+
   const onSubmit = async () => {
     if (!disabled && !isLoading) {
       Keyboard.dismiss();
@@ -37,7 +42,7 @@ const SignUpScreen = ({navigation}) => {
             name: name,
             id: email,
             password: password,
-            phone_number: phone,
+            phoneNumber: phone,
             fcmToken: fcmToken,
           }),
           headers: {
