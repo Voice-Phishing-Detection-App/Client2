@@ -4,6 +4,7 @@ import MainStack from './MainStack';
 import AuthStack from './AuthStack';
 import React, {useEffect, useState} from 'react';
 import messaging from '@react-native-firebase/messaging';
+import SInfo from 'react-native-sensitive-info';
 
 const RootStack = createStackNavigator();
 
@@ -47,6 +48,7 @@ const Navigation = () => {
       .then(response => response.json())
       .then(data => {
         console.log('성공', data);
+        SInfo.setItem('TwilioToken', data.twilioToken, {}); // twilio토큰 저장 -> 되는지 확인 필요
       })
       .catch(error => {
         console.error(error);
