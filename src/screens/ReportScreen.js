@@ -132,6 +132,12 @@ const ReportScreen = ({route, navigation}) => {
             // API 응답 처리
             console.log(data);
             alert('신고가 접수되었습니다. 감사합니다.');
+            setType('REPORT_TYPE_FRAUD');
+            setFilteredObject([]);
+            setContent('');
+            setPhoneNumber(null);
+            setType(typeList[0]);
+            setKType(null);
           })
           .catch(error => {
             console.error(error);
@@ -164,6 +170,12 @@ const ReportScreen = ({route, navigation}) => {
             // API 응답 처리
             console.log(data);
             alert('신고가 접수되었습니다. 감사합니다.');
+            setType('REPORT_TYPE_FRAUD');
+            setFilteredObject([]);
+            setContent('');
+            setPhoneNumber(null);
+            setType(typeList[0]);
+            setKType(null);
           })
           .catch(error => {
             console.error(error);
