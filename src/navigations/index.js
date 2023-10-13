@@ -6,7 +6,6 @@ import React, {useEffect, useState} from 'react';
 import messaging from '@react-native-firebase/messaging';
 import SInfo from 'react-native-sensitive-info';
 import {url} from '../url';
-import SInfo from 'react-native-sensitive-info';
 
 const RootStack = createStackNavigator();
 
