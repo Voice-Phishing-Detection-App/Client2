@@ -71,7 +71,7 @@ const FindPassScreen = ({navigation}) => {
       </View>
       <View style={styles.buttonContainer}>
         <Button
-          title={'아이디 찾기'}
+          title={'비밀번호 찾기'}
           onPress={onSubmit}
           disabled={disabled}
           isLoading={isLoading}
