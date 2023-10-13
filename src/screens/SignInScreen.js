@@ -55,6 +55,7 @@ const SignInScreen = ({navigation}) => {
             try {
               SInfo.setItem('Token', token, {}); // 되는지 확인 필요
               // 로그인 성공 후 메인 화면으로 이동
+              setIsLoading(false);
               navigation.navigate('Main');
             } catch (e) {
               Alert.alert('로그인 실패');
