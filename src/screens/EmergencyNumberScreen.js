@@ -20,20 +20,7 @@ const EmergencyNumberScreen = () => {
   const [sensitivityList, setSensitivityList] = useState([1, 2, 3]);
 
   const [phone, setPhone] = useState('');
-  const [list, setList] = useState([
-    {
-      sosId: 1,
-      relation: '엄마',
-      phoneNumber: '010-1234-5678',
-      level: '3',
-    },
-    {
-      sosId: 2,
-      relation: '아빠',
-      phoneNumber: '010-1234-6578',
-      level: '1',
-    },
-  ]);
+  const [list, setList] = useState([]);
   const [editingSosId, setEditingSosId] = useState(null);
 
   const edit = item => {
