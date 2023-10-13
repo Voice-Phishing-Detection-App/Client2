@@ -19,7 +19,7 @@ const DoubtListScreen = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`, // 토큰 사용
+            Authorization: `Bearer ${value}`, // 토큰 사용
           },
         })
           .then(response => response.json())
