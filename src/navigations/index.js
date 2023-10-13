@@ -5,42 +5,27 @@ import AuthStack from './AuthStack';
 import React, {useEffect, useState} from 'react';
 import messaging from '@react-native-firebase/messaging';
 import SInfo from 'react-native-sensitive-info';
+import {url} from '../url';
+import SInfo from 'react-native-sensitive-info';
 
 const RootStack = createStackNavigator();
 
 const Navigation = () => {
-  const [fcmToken, setFcmToken] = useState('');
-
-  const getFcmToken = async () => {
-    const token = await messaging().getToken();
-    setFcmToken(token);
-  };
-
-  useEffect(() => {
-    getFcmToken();
-  }, []);
-
-  useEffect(() => {
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
-      console.log('foreground:', remoteMessage);
-      // 여기에서 메시지를 처리하고 화면에 표시할 수 있습니다.
-      const call = remoteMessage.data.call;
-      if (call == 'incoming') {
-        // call: incoming 이라서 이 상태일때 통신 보내는걸로 했음 -> 나중에 다른 표시로 바꿔도 될듯
-        fcmget();
-      }
-      // 추출한 데이터를 로그에 출력 - 원하는 것만 출력
-    });
-
-    return unsubscribe;
-  }, []);
+  messaging().onMessage(async remoteMessage => {
+    console.log('foreground: ', remoteMessage);
+    const call = remoteMessage.data.call;
+    if (call == 'incoming') {
+      fcmget();
+    }
+  });
 
   const fcmget = async () => {
-    await fetch(`${url}/token`, {
+    const token = await messaging().getToken();
+    await fetch(`${url}/twilio/token`, {
       method: 'POST',
-      body: {
-        fcmToken: fcmToken,
-      },
+      body: JSON.stringify({
+        fcmToken: token,
+      }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -48,10 +33,10 @@ const Navigation = () => {
       .then(response => response.json())
       .then(data => {
         console.log('성공', data);
-        SInfo.setItem('TwilioToken', data.twilioToken, {}); // twilio토큰 저장 -> 되는지 확인 필요
+        SInfo.setItem('TwilioToken', data.twilioToken, {});
       })
       .catch(error => {
-        console.error(error);
+        console.error('실패', error);
       });
   };
 
