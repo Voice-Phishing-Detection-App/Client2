@@ -2,21 +2,39 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import MainStack from './MainStack';
 import AuthStack from './AuthStack';
-import React, {useEffect, useState} from 'react';
 import messaging from '@react-native-firebase/messaging';
 import SInfo from 'react-native-sensitive-info';
 import {url} from '../url';
+import CallScreen from '../test/Call.js';
+import {useEffect, useState} from 'react';
 
 const RootStack = createStackNavigator();
 
 const Navigation = () => {
-  messaging().onMessage(async remoteMessage => {
-    console.log('foreground: ', remoteMessage);
-    const call = remoteMessage.data.call;
-    if (call == 'incoming') {
-      fcmget();
-    }
-  });
+  const [incomingCall, setIncomingCall] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      console.log('Foreground Message:', remoteMessage);
+
+      if (remoteMessage.data.call === 'incoming') {
+        fcmget();
+        setIncomingCall({callerName: remoteMessage.data.callerName});
+        Vibration.vibrate([1000, 500, 1000]);
+      }
+    });
+    return unsubscribe;
+  }, []);
+
+  if (incomingCall) {
+    return (
+      <CallScreen
+        callerName={incomingCall.callerName}
+        onAccept={() => {}}
+        onReject={() => {}}
+      />
+    );
+  }
 
   const fcmget = async () => {
     const token = await messaging().getToken();
