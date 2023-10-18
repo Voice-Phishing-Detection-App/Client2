@@ -1,49 +1,50 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {Call, CallInvite} from '@twilio/voice-react-native-sdk';
+// import {Call, CallInvite} from '@twilio/voice-react-native-sdk';
 import SInfo from 'react-native-sensitive-info';
 import messaging from '@react-native-firebase/messaging';
 import {url} from '../url';
+import TwilioVoice from 'react-native-twilio-programmable-voice';
 
-const TwilioVoice = () => {
+const TwilioVoiceScreen = () => {
   const [currentCall, setCurrentCall] = useState(null); // 현재 전화 객체
   const [callerNumber, setCallerNumber] = useState(''); // 전화 건 사람의 번호
-  const [fcmToken, setFcmToken] = useState('');
+  // const [fcmToken, setFcmToken] = useState('');
 
-  const getFcmToken = async () => {
-    const token = await messaging().getToken();
-    setFcmToken(token);
-  };
+  // const getFcmToken = async () => {
+  //   const token = await messaging().getToken();
+  //   setFcmToken(token);
+  // };
 
-  const fcmget = async () => {
-    const token = await messaging().getToken();
-    await fetch(`${url}/twilio/token`, {
-      method: 'POST',
-      body: JSON.stringify({
-        fcmToken: token,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        SInfo.setItem('TwilioToken', data.twilioToken, {});
-      })
-      .catch(error => {
-        console.error('실패', error);
-      });
-  };
+  // const fcmget = async () => {
+  //   const token = await messaging().getToken();
+  //   await fetch(`${url}/twilio/token`, {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       fcmToken: token,
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       SInfo.setItem('TwilioToken', data.twilioToken, {});
+  //     })
+  //     .catch(error => {
+  //       console.error('실패', error);
+  //     });
+  // };
 
-  useEffect(() => {
-    getFcmToken();
-  }, []);
+  // useEffect(() => {
+  //   getFcmToken();
+  // }, []);
 
   useEffect(() => {
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       const call = remoteMessage.data.call;
       if (call === 'incoming') {
-        fcmget();
+        // fcmget();
         setupTwilio();
       }
     });
@@ -79,13 +80,26 @@ const TwilioVoice = () => {
 
   const setupTwilio = async () => {
     try {
-      const twilioToken = await getTwilioToken();
-      const callInvite = new CallInvite(twilioToken);
-
-      callInvite.addEventListener('incoming', incomingCallInvite => {
-        setCurrentCall(incomingCallInvite);
-        setCallerNumber(incomingCallInvite.from);
+      try {
+        const twilioToken = await getTwilioToken();
+        const success = await TwilioVoice.initWithToken(twilioToken);
+        console.log('suc ' + success);
+      } catch (err) {
+        console.err(err);
+      }
+      TwilioVoice.addEventListener('connectionDidConnect', data => {
+        console.log(data);
       });
+      // .then(() => {
+      //   console.log('TwilioVoice initialized');
+      // })
+      // .catch(error => {
+      //   console.error('Failed to initialize TwilioVoice:', error);
+      // });
+      // CallInvite.addEventListener('incoming', incomingCallInvite => {
+      //   setCurrentCall(incomingCallInvite);
+      //   setCallerNumber(incomingCallInvite.from);
+      // });
     } catch (error) {
       console.error(error);
     }
@@ -125,4 +139,4 @@ const TwilioVoice = () => {
   );
 };
 
-export default TwilioVoice;
+export default TwilioVoiceScreen;

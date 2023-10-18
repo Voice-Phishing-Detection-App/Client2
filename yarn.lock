@@ -6035,6 +6035,11 @@ react-native-sensitive-info@^5.5.8:
   resolved "https://registry.npmjs.org/react-native-sensitive-info/-/react-native-sensitive-info-5.5.8.tgz"
   integrity sha512-p99oaEW4QG1RdUNrkvd/c6Qdm856dQw/Rk81f9fA6Y3DlPs6ADNdU+jbPuTz3CcOUJwuKBDNenX6LR9KfmGFEg==
 
+react-native-twilio-programmable-voice@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.npmjs.org/react-native-twilio-programmable-voice/-/react-native-twilio-programmable-voice-4.4.0.tgz"
+  integrity sha512-b8bqkw8Wh8VM45lwS5uFpTpWV2Z4CTFilNRU2//8Rg++hGBbg+HXjvQ2ewvWbNxAJgGu0yQxIGnBuDc0fdOsvw==
+
 react-native-vector-icons@^10.0.0:
   version "10.0.0"
   resolved "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-10.0.0.tgz"
@@ -6043,7 +6048,7 @@ react-native-vector-icons@^10.0.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native@*, react-native@>=0.57, react-native@0.72.4:
+react-native@*, react-native@>=0.57, react-native@>=0.60.0, react-native@0.72.4:
   version "0.72.4"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.72.4.tgz"
   integrity sha512-+vrObi0wZR+NeqL09KihAAdVlQ9IdplwznJWtYrjnQ4UbCW6rkzZJebRsugwUneSOKNFaHFEo1uKU89HsgtYBg==

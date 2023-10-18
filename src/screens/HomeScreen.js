@@ -77,6 +77,17 @@ const HomeScreen = () => {
           </Pressable>
           <Text style={styles.buttontxt}>신고 기록</Text>
         </View>
+        <View>
+          <Pressable
+            onPress={() => {
+              navigation.navigate('t');
+            }}
+            hitSlop={10}
+            style={styles.button}>
+            <Icon name="reader-outline" size={25} color={WHITE} />
+          </Pressable>
+          <Text style={styles.buttontxt}>twilio</Text>
+        </View>
       </View>
     </View>
   );

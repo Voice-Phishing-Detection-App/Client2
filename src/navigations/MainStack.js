@@ -10,6 +10,7 @@ import MyReportListScreen from '../screens/MyReportListScreen';
 import ListDetailScreen from '../screens/ListDetailScreen';
 import HeaderLeftBack from '../components/HeaderLeftBack';
 import SearchListScreen from '../screens/SearchListScreen';
+import TwilioVoice from '../test/TwilioVoiceScreen';
 const Stack = createNativeStackNavigator();
 //로그인 후 컴포넌트
 const MainStack = () => {
@@ -135,6 +136,20 @@ const MainStack = () => {
         component={SearchListScreen}
         options={{
           title: '신고 기록',
+          headerStyle: {
+            backgroundColor: PRIMARY.DEFAULT,
+          },
+          headerTintColor: WHITE,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="t"
+        component={TwilioVoice}
+        options={{
+          title: 't',
           headerStyle: {
             backgroundColor: PRIMARY.DEFAULT,
           },
