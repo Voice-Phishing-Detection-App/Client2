@@ -4,7 +4,6 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import SInfo from 'react-native-sensitive-info';
 import messaging from '@react-native-firebase/messaging';
 import {url} from '../url';
-import TwilioVoice from 'react-native-twilio-programmable-voice';
 
 const TwilioVoiceScreen = () => {
   const [currentCall, setCurrentCall] = useState(null); // 현재 전화 객체
@@ -82,14 +81,11 @@ const TwilioVoiceScreen = () => {
     try {
       try {
         const twilioToken = await getTwilioToken();
-        const success = await TwilioVoice.initWithToken(twilioToken);
-        console.log('suc ' + success);
+        // const success = await TwilioVoice.initWithToken(twilioToken);
+        // console.log('suc ' + success);
       } catch (err) {
         console.err(err);
       }
-      TwilioVoice.addEventListener('connectionDidConnect', data => {
-        console.log(data);
-      });
       // .then(() => {
       //   console.log('TwilioVoice initialized');
       // })

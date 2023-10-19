@@ -77,7 +77,7 @@ const HomeScreen = () => {
           </Pressable>
           <Text style={styles.buttontxt}>신고 기록</Text>
         </View>
-        <View>
+        {/* <View>
           <Pressable
             onPress={() => {
               navigation.navigate('t');
@@ -87,7 +87,7 @@ const HomeScreen = () => {
             <Icon name="reader-outline" size={25} color={WHITE} />
           </Pressable>
           <Text style={styles.buttontxt}>twilio</Text>
-        </View>
+        </View> */}
       </View>
     </View>
   );

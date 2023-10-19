@@ -8,6 +8,7 @@ import {url} from '../url';
 import CallScreen from '../test/Call.js';
 import {useEffect, useState} from 'react';
 import {Vibration} from 'react-native';
+import CallStateScreen from '../test/CallStateScreen';
 const RootStack = createStackNavigator();
 
 const Navigation = () => {
@@ -18,24 +19,24 @@ const Navigation = () => {
       console.log('Foreground Message:', remoteMessage);
 
       if (remoteMessage.data.call === 'incoming') {
-        // console.log('call', remoteMessage.data);
+        console.log('call', remoteMessage.data);
         fcmget();
-        // setIncomingCall({callerName: remoteMessage.data.callerName});
-        // Vibration.vibrate([1000, 500, 1000]);
+        setIncomingCall({callerName: remoteMessage.data.callerName});
+        Vibration.vibrate([1000, 500, 1000]);
       }
     });
     return unsubscribe;
   }, []);
 
-  // if (incomingCall) {
-  //   return (
-  //     <CallScreen
-  //       callerName={incomingCall.callerName}
-  //       onAccept={() => {}}
-  //       onReject={() => {}}
-  //     />
-  //   );
-  // }
+  if (incomingCall) {
+    return (
+      <CallScreen
+        callerName={incomingCall.callerName}
+        onAccept={() => {}}
+        onReject={() => {}}
+      />
+    );
+  }
 
   const fcmget = async () => {
     const token = await messaging().getToken();
@@ -61,10 +62,11 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <RootStack.Navigator
-        initialRouteName="Auth"
+        initialRouteName="c"
         screenOptions={{headerShown: false}}>
-        <RootStack.Screen name="Auth" component={AuthStack} />
-        <RootStack.Screen name="Main" component={MainStack} />
+        {/* <RootStack.Screen name="Auth" component={AuthStack} />
+        <RootStack.Screen name="Main" component={MainStack} /> */}
+        <RootStack.Screen name="c" component={CallStateScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
