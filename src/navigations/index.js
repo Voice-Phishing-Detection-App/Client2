@@ -5,15 +5,12 @@ import AuthStack from './AuthStack';
 import messaging from '@react-native-firebase/messaging';
 import SInfo from 'react-native-sensitive-info';
 import {url} from '../url';
-import CallScreen from '../test/Call.js';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {Vibration} from 'react-native';
 import CallStateScreen from '../test/CallStateScreen';
 const RootStack = createStackNavigator();
 
 const Navigation = () => {
-  const [incomingCall, setIncomingCall] = useState(null);
-
   useEffect(() => {
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       console.log('Foreground Message:', remoteMessage);
@@ -27,16 +24,6 @@ const Navigation = () => {
     });
     return unsubscribe;
   }, []);
-
-  if (incomingCall) {
-    return (
-      <CallScreen
-        callerName={incomingCall.callerName}
-        onAccept={() => {}}
-        onReject={() => {}}
-      />
-    );
-  }
 
   const fcmget = async () => {
     const token = await messaging().getToken();
