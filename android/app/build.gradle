@@ -123,6 +123,7 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:31.1.0') // 여기 내용을 추가해줍니다.
     implementation 'com.google.firebase:firebase-messaging' // 여기 내용을 추가해줍니다.
+     implementation project(':react-native-gesture-handler')
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
