@@ -59,12 +59,11 @@ const SignInScreen = ({navigation}) => {
               navigation.navigate('Main');
             } catch (e) {
               Alert.alert('로그인 실패');
-              console.error('token 에러: ' + e);
               setIsLoading(false);
             }
           })
           .catch(error => {
-            console.error('tokne 만료:' + error);
+            Alert.alert('로그인 실패');
             setIsLoading(false);
           });
       } catch (e) {
