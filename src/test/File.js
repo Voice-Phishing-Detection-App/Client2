@@ -15,6 +15,7 @@ const File = () => {
       const result = await request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE);
       if (result === RESULTS.GRANTED) {
         // 권한이 승인되면 파일 읽기 및 업로드 작업 수행
+        console.log('권한이 승인되었습니다.');
         getMostRecentFile();
       } else {
         // 권한이 거부됨
@@ -56,10 +57,26 @@ const File = () => {
       console.error('디렉토리 스캔 오류:', error);
     }
   };
-
   useEffect(() => {
     checkAndRequestPermission();
   }, []);
 };
 
 export default File;
+
+// import RNFetchBlob from 'react-native-fetch-blob';
+
+// const fileUri = 'file:///path/to/your/file.m4a'; // 업로드할 파일의 경로입니다.
+// const uploadUrl = 'https://your-server.com/upload-endpoint'; // 파일을 업로드할 서버의 URL입니다.
+
+// RNFetchBlob.fetch('POST', uploadUrl, {
+//   'Content-Type' : 'multipart/form-data',
+// }, [
+//   { name : 'file', filename : 'file.m4a', data: RNFetchBlob.wrap(fileUri)},
+// ])
+// .then((resp) => {
+//   console.log('Your file has been uploaded!');
+// })
+// .catch((err) => {
+//   console.error('upload failed:', err);
+// })

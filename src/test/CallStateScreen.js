@@ -1,22 +1,70 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
   Text,
   TouchableHighlight,
   PermissionsAndroid,
+  Linking,
 } from 'react-native';
 import CallDetectorManager from 'react-native-call-detection';
+import RNFetchBlob from 'rn-fetch-blob'; // rn-fetch-blob 라이브러리 추가
+import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 const CallStateScreen = () => {
-  const [featureOn, setFeatureOn] = React.useState(false);
-  const [incoming, setIncoming] = React.useState(false);
-  const [number, setNumber] = React.useState(null);
+  const [featureOn, setFeatureOn] = useState(false);
+  const [incoming, setIncoming] = useState(false);
+  const [number, setNumber] = useState(null);
+  let callDetector;
+  const directoryPath = `${
+    Platform.OS === 'android'
+      ? RNFetchBlob.fs.dirs.SDCardDir // Android의 내장 메모리 경로
+      : RNFetchBlob.fs.dirs.DocumentDir // iOS 또는 다른 플랫폼의 내장 메모리 경로
+  }/Call/`;
+  const [mostRecentFile, setMostRecentFile] = useState(null);
 
   useEffect(() => {
-    // 컴포넌트가 처음으로 마운트될 때 권한을 요청하는 함수를 호출
     askPermission();
+    startListenerTapped();
   }, []);
+
+  const checkAndRequestPermission = async () => {
+    const status = await check(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE);
+
+    if (status === RESULTS.GRANTED) {
+      getMostRecentFile();
+    } else {
+      const result = await request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE);
+      if (result === RESULTS.GRANTED) {
+        console.log('권한이 승인되었습니다.');
+        getMostRecentFile();
+      } else {
+        console.log('권한이 거부되었습니다.');
+      }
+    }
+  };
+
+  const getMostRecentFile = async () => {
+    try {
+      const files = await RNFetchBlob.fs.ls(directoryPath);
+      if (files.length > 0) {
+        console.log('파일들: ' + files);
+        files.sort(async (a, b) => {
+          const statA = await RNFetchBlob.fs.stat(`${directoryPath}${a}`);
+          const statB = await RNFetchBlob.fs.stat(`${directoryPath}${b}`);
+          return statB.lastModified - statA.lastModified;
+        });
+
+        const mostRecentFile = files[0];
+        console.log('가장 최근 파일: ' + mostRecentFile);
+        setMostRecentFile(mostRecentFile); // 가장 최신 파일을 설정
+      } else {
+        console.log('디렉토리에 파일이 없습니다.');
+      }
+    } catch (error) {
+      console.error('디렉토리 스캔 오류:', error);
+    }
+  };
 
   const askPermission = async () => {
     try {
@@ -32,13 +80,16 @@ const CallStateScreen = () => {
 
   const startListenerTapped = () => {
     setFeatureOn(true);
-    const callDetector = new CallDetectorManager(
+    callDetector = new CallDetectorManager(
       (event, num) => {
         console.log('event ', event, ' number ', num);
         if (event === 'Disconnected') {
           // 통화 종료 시
           setIncoming(false);
           setNumber(null);
+
+          // 전화가 끊어지면 File 컴포넌트의 기능을 호출
+          checkAndRequestPermission();
         } else if (event === 'Incoming') {
           // 수신 전화 시
           setIncoming(true);
@@ -53,8 +104,8 @@ const CallStateScreen = () => {
           setNumber(null);
         }
       },
-      true, // 수신 전화의 전화 번호를 읽으려면 true로 설정 (ANDROID 전용)
-      () => {}, // 권한이 거부될 경우 호출되는 콜백 (ANDROID 전용)
+      true,
+      () => {},
       {
         title: 'Phone State Permission',
         message:
@@ -63,28 +114,9 @@ const CallStateScreen = () => {
     );
   };
 
-  const stopListenerTapped = () => {
-    setFeatureOn(false);
-    callDetector && callDetector.dispose();
-  };
-
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>통화 감지를 활성화하시겠습니까?</Text>
-      <TouchableHighlight
-        onPress={featureOn ? stopListenerTapped : startListenerTapped}>
-        <View
-          style={{
-            width: 200,
-            height: 200,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: featureOn ? 'greenyellow' : 'red',
-          }}>
-          <Text style={styles.text}>{featureOn ? `활성화` : `비활성화`} </Text>
-        </View>
-      </TouchableHighlight>
-      {incoming && <Text style={{fontSize: 50}}>수신 중 {number}</Text>}
+      {incoming && <Text style={{fontSize: 50}}>{number}</Text>}
     </View>
   );
 };
@@ -95,10 +127,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-  },
-  text: {
-    padding: 20,
-    fontSize: 20,
   },
 });
 
