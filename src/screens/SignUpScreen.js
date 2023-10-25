@@ -51,10 +51,35 @@ const SignUpScreen = ({navigation}) => {
         })
           .then(response => response.text())
           .then(data => {
-            console.log(data); // id가 반환
-            setIsLoading(false);
-            Alert.alert('회원가입 완료');
-            navigation.push('Auth');
+            if (
+              data === 'PHONENUMBER_DUPLICATED 이미 사용중인 전화번호입니다.'
+            ) {
+              // 전화번호 중복 에러 메시지를 처리
+              Alert.alert('회원가입 실패', '이미 사용 중인 전화번호입니다.', [
+                {
+                  text: 'Ok',
+                  onPress: () => setIsLoading(false),
+                },
+              ]);
+            } else if (
+              data ===
+              'DEVICE_DUPLICATED 해당 기기에서 사용중인 계정이 존재합니다.'
+            ) {
+              Alert.alert(
+                '회원가입 실패',
+                '해당 기기에서 사용중인 계정이 존재합니다.',
+                [
+                  {
+                    text: 'Ok',
+                    onPress: () => setIsLoading(false),
+                  },
+                ],
+              );
+            } else {
+              setIsLoading(false);
+              Alert.alert('회원가입 완료');
+              navigation.push('Auth');
+            }
           })
           .catch(error => {
             console.error(error);
