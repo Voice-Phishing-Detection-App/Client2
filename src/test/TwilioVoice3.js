@@ -4,37 +4,48 @@ import {DeviceEventEmitter} from 'react-native';
 import TwilioVoice from 'react-native-twilio-programmable-voice'; // Twilio Voice 라이브러리 추가
 import SInfo from 'react-native-sensitive-info';
 
-const TwilioVoice3 = () => {
+const TwilioVoice3 = ({token}) => {
   useEffect(() => {
     getCall();
   }, []);
   const getCall = async () => {
     // Twilio Voice 초기화
-    const twilioToken = await getTwilioToken();
-    console.log(twilioToken);
-    await TwilioVoice.initWithAccessToken(twilioToken); // Twilio Access Token
-    await DeviceEventEmitter.addListener('deviceReady', () => {
+    // const twilioToken = await getTwilioToken();
+    const twilioToken = token;
+    console.log('??' + twilioToken);
+    // await TwilioVoice.initWithAccessToken(twilioToken); // Twilio Access Token
+    try {
+      const success = await TwilioVoice.initWithAccessToken(twilioToken);
+      console.log('suc' + success);
+    } catch (err) {
+      console.log(err);
+    }
+    TwilioVoice.addEventListener('callStateRinging', function (data) {
+      console.log('twiliovoice ' + data);
+      //   {
+      //       call_sid: string,  // Twilio call sid
+      //       call_state: 'CONNECTED' | 'ACCEPTED' | 'CONNECTING' | 'RINGING' | 'DISCONNECTED' | 'CANCELLED',
+      //       call_from: string, // "+441234567890"
+      //       call_to: string,   // "client:bob"
+      //   }
+    });
+    DeviceEventEmitter.addListener('deviceReady', () => {
       console.log('deviceready');
     });
 
-    await DeviceEventEmitter.addListener('callInvite', callInvite => {
+    DeviceEventEmitter.addListener('callInvite', callInvite => {
       console.log('Incoming Call');
     });
 
-    await DeviceEventEmitter.addListener(
-      'incomingConnectionDidDisconnect',
-      () => {
-        console.log('Incoming call disconnected');
-      },
-    );
+    DeviceEventEmitter.addListener('incomingConnectionDidDisconnect', () => {
+      console.log('Incoming call disconnected');
+    });
 
-    await DeviceEventEmitter.addListener('connectionDidDisconnect', data => {
+    DeviceEventEmitter.addListener('connectionDidDisconnect', data => {
       if (data && data.call_state === 'DISCONNECTED') {
         console.log('Call disconnected');
       }
     });
-
-    return unsubscribe;
   };
 
   const getTwilioToken = async () => {
