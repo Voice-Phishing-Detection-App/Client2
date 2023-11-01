@@ -21,18 +21,23 @@ const HomeScreen = () => {
             backgroundColor={WHITE}
             borderWidth={8}
             borderRadius={10}
-            triangleSize={13}
-            triangleDirection="left"
-            triangleOffset="65%"
-            height={150}
-            width={220}>
-            <Text style={{fontSize: 10}}>
+            triangleSize={20}
+            triangleDirection="bottom"
+            triangleOffset="28%"
+            height={310}
+            width={370}>
+            <Text
+              style={{
+                fontSize: 16,
+              }}>
               {/* 문예주님 안녕하세요.{'\n'}오늘 총 신고 기록은{'\n'}3번 있어요. */}
-              보이스 피싱 탐지 기능을 사용하기 위해서는 설정이 필요해요{'\n'}
+              보이스 피싱 탐지 기능을 사용하기 위해서는 설정이 필요합니다.
+              {'\n\n'}
               1. Android 기기에서 전화 앱 을 엽니다.{'\n'}2. 오른쪽 상단에서
-              옵션 더보기 : {'>'} 설정 {'>'} 통화 녹음을 탭합니다.{'\n'}3. 통화
-              자동 녹음을 활성화 합니다.{'\n'}4. 통화 자동 녹음을 열어 모든
-              번호를 사용 설정합니다.
+              옵션 더보기 : {'->'} 설정 {'->'} 통화 녹음을 탭합니다.{'\n'}3.
+              통화 자동 녹음을 활성화 합니다.{'\n'}4. 통화 자동 녹음을 열어 모든
+              번호를 사용 설정합니다. {'\n\n'}중요: 전화 통화 녹음과 관련된 모든
+              법률을 준수할 책임은 사용자에게 있습니다.
             </Text>
           </Balloon>
         </View>
@@ -82,17 +87,6 @@ const HomeScreen = () => {
           </Pressable>
           <Text style={styles.buttontxt}>신고 기록</Text>
         </View>
-        {/* <View>
-          <Pressable
-            onPress={() => {
-              navigation.navigate('t');
-            }}
-            hitSlop={10}
-            style={styles.button}>
-            <Icon name="reader-outline" size={25} color={WHITE} />
-          </Pressable>
-          <Text style={styles.buttontxt}>twilio</Text>
-        </View> */}
       </View>
     </View>
   );
@@ -103,27 +97,28 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   containertop: {
-    flex: 1,
+    flex: 4,
     backgroundColor: SBTN.DEFAULT,
   },
   containerbottom: {
     flexDirection: 'row',
+    // alignItems: 'center',
     justifyContent: 'space-around',
     paddingTop: 40,
     paddingHorizontal: 20,
-    flex: 2,
+    flex: 1,
     backgroundColor: WHITE,
   },
   image: {
-    height: 160,
-    width: 160,
+    height: 180,
+    width: 200,
     position: 'absolute',
-    top: 15,
+    bottom: 0,
   },
   ballooncontainer: {
     position: 'absolute',
-    top: 10,
-    right: 5,
+    top: 0,
+    right: 0,
   },
   button: {
     marginRight: 15,
