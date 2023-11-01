@@ -146,7 +146,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <RootStack.Navigator
-        initialRouteName="Main"
+        initialRouteName="Auth"
         screenOptions={{headerShown: false}}>
         <RootStack.Screen name="Auth" component={AuthStack} />
         <RootStack.Screen name="Main" component={MainStack} />

@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Button from '../components/Button';
 import TextInput, {IconNames, ReturnKeyTypes} from '../components/TextInput';
-import {PRIMARY} from '../color';
+import {BLACK, PRIMARY} from '../color';
 import PropTypes from 'prop-types';
 import SInfo from 'react-native-sensitive-info';
 import * as KakaoLogin from '@react-native-seoul/kakao-login';
@@ -95,7 +95,9 @@ const SignInScreen = ({navigation}) => {
   return (
     <TouchableWithoutFeedback onPress={handleDismissKeyboard}>
       <View style={styles.container}>
-        <Text style={styles.text}>피노키오</Text>
+        <View style={styles.titleContainer}>
+          <Image source={require('../img/logo.png')} style={styles.image} />
+        </View>
         <View style={styles.view}>
           <TextInput
             value={email}
@@ -125,7 +127,7 @@ const SignInScreen = ({navigation}) => {
             />
           </View>
           <View
-            style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
+            style={{padding: 5, flexDirection: 'row', alignItems: 'center'}}>
             <View style={styles.line} />
             <View>
               <Text style={{width: 40, textAlign: 'center'}}>또는</Text>
@@ -136,14 +138,6 @@ const SignInScreen = ({navigation}) => {
             <TouchableOpacity onPress={Kakaologin}>
               <Image source={require('../../assets/images/kakao_login.png')} />
             </TouchableOpacity>
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button
-              title={'네이버 로그인'}
-              onPress={() => {}}
-              disabled={disabled}
-              isLoading={isLoading}
-            />
           </View>
           <View style={styles.textContainer}>
             <Text onPress={() => navigation.push('FindId')}>아이디찾기</Text>
@@ -168,6 +162,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  titleContainer: {
+    width: '100%',
+    height: '20%',
+    // flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // marginTop: 50,
+  },
+  image: {
+    // flex: 1,
+    width: '80%',
+    resizeMode: 'contain',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   view: {
