@@ -50,7 +50,7 @@ const SignInScreen = ({navigation}) => {
           .then(response => response.json())
           .then(async data => {
             const token = data.token; // 토큰 추출
-            console.log(token);
+            console.log('Token ' + token);
 
             try {
               SInfo.setItem('Token', token, {}); // 되는지 확인 필요
@@ -58,12 +58,12 @@ const SignInScreen = ({navigation}) => {
               setIsLoading(false);
               navigation.navigate('Main');
             } catch (e) {
-              Alert.alert('로그인 실패');
+              Alert.alert('로그인 실패 token');
               setIsLoading(false);
             }
           })
           .catch(error => {
-            Alert.alert('로그인 실패');
+            Alert.alert('로그인 실패 통신');
             setIsLoading(false);
           });
       } catch (e) {

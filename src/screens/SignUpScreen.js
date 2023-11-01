@@ -35,6 +35,7 @@ const SignUpScreen = ({navigation}) => {
     if (!disabled && !isLoading) {
       Keyboard.dismiss();
       setIsLoading(true);
+      console.log('fcmtoken' + fcmToken);
       try {
         fetch(`${url}/signup`, {
           method: 'POST',
