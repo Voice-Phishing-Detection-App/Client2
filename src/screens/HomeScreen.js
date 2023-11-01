@@ -24,17 +24,15 @@ const HomeScreen = () => {
             triangleSize={13}
             triangleDirection="left"
             triangleOffset="65%"
-            height={100}
-            width={180}>
-            <Text style={{fontSize: 14}}>
-              문예주님 안녕하세요.{'\n'}오늘 총 신고 기록은{'\n'}3번 있어요.
-              {/* 보이스 피싱 탐지 기능을 사용하기 위해서는 설정이 필요해요 
-중요: 전화 통화 녹음과 관련된 모든 법률을 준수할 책임은 사용자에게 있습니다. 
-책임감 있게 통화 녹음 기능을 사용하고 필요한 경우에만 사용하세요. 
-1. Android 기기에서 전화 앱 을 엽니다.
-2. 오른쪽 상단에서 옵션 더보기 : > 설정 > 통화 녹음을 탭합니다.
-3. 통화 자동 녹음을 활성화 합니다.
-4. 통화 자동 녹음을 열어 모든 번호를 사용 설정합니다.*/}
+            height={150}
+            width={220}>
+            <Text style={{fontSize: 10}}>
+              {/* 문예주님 안녕하세요.{'\n'}오늘 총 신고 기록은{'\n'}3번 있어요. */}
+              보이스 피싱 탐지 기능을 사용하기 위해서는 설정이 필요해요{'\n'}
+              1. Android 기기에서 전화 앱 을 엽니다.{'\n'}2. 오른쪽 상단에서
+              옵션 더보기 : {'>'} 설정 {'>'} 통화 녹음을 탭합니다.{'\n'}3. 통화
+              자동 녹음을 활성화 합니다.{'\n'}4. 통화 자동 녹음을 열어 모든
+              번호를 사용 설정합니다.
             </Text>
           </Balloon>
         </View>
@@ -124,8 +122,8 @@ const styles = StyleSheet.create({
   },
   ballooncontainer: {
     position: 'absolute',
-    top: 15,
-    right: 30,
+    top: 10,
+    right: 5,
   },
   button: {
     marginRight: 15,

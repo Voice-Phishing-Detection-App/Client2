@@ -10,7 +10,6 @@ import MyReportListScreen from '../screens/MyReportListScreen';
 import ListDetailScreen from '../screens/ListDetailScreen';
 import HeaderLeftBack from '../components/HeaderLeftBack';
 import SearchListScreen from '../screens/SearchListScreen';
-// import TwilioVoice3 from '../test/TwilioVoice3';
 const Stack = createNativeStackNavigator();
 //로그인 후 컴포넌트
 const MainStack = () => {
@@ -145,20 +144,6 @@ const MainStack = () => {
           },
         }}
       />
-      {/* <Stack.Screen
-        name="t"
-        component={TwilioVoice3}
-        options={{
-          title: 't',
-          headerStyle: {
-            backgroundColor: PRIMARY.DEFAULT,
-          },
-          headerTintColor: WHITE,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
-      /> */}
     </Stack.Navigator>
   );
 };
