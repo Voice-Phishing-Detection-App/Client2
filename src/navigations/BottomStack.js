@@ -8,6 +8,7 @@ import HeaderLeftButton from '../components/HeaderLeftButton';
 import SearchScreen from '../screens/SearchScreen';
 import ReportScreen from '../screens/ReportScreen';
 import MyPageScreen from '../screens/MyPageScreen';
+import {Image} from 'react-native';
 // import DoubtListScreen from '../screens/DoubtListScreen';
 
 const Tab = createBottomTabNavigator();
@@ -26,7 +27,20 @@ const BottomStack = () => {
         name="Home"
         component={HomeScreen}
         options={{
-          title: '피노키오',
+          headerTitle: () => (
+            <Image
+              source={require('../img/logo.png')}
+              style={{
+                width: 150,
+                height: 150,
+                resizeMode: 'contain',
+                // justifyContent: 'center',
+                // alignItems: 'center',
+                // flex: 1,
+              }}
+            />
+          ),
+          headerStyle: {height: 62},
           tabBarLabel: '홈',
           headerRight: HeaderRightButton,
           headerLeft: HeaderLeftButton,
