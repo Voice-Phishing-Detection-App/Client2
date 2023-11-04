@@ -9,6 +9,7 @@ import CallDetectorManager from 'react-native-call-detection';
 import RNFetchBlob from 'rn-fetch-blob'; // rn-fetch-blob 라이브러리 추가
 import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import {url} from '../url';
+import notifee from '@notifee/react-native';
 const RootStack = createStackNavigator();
 
 const Navigation = () => {
@@ -29,13 +30,27 @@ const Navigation = () => {
   useEffect(() => {
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       console.log('Foreground Message:', remoteMessage);
-
-      if (remoteMessage.data.call === 'incoming') {
-        console.log('call', remoteMessage.data);
-      }
+      const title = remoteMessage?.notification?.title;
+      const body = remoteMessage?.notification?.body;
+      await onDisplayNotification({title, body});
     });
     return unsubscribe;
   }, []);
+
+  const onDisplayNotification = async ({title = '', body = ''}) => {
+    const channelId = await notifee.createChannel({
+      id: 'channelId',
+      name: 'channelName',
+    });
+
+    await notifee.displayNotification({
+      title,
+      body,
+      android: {
+        channelId,
+      },
+    });
+  };
 
   useEffect(() => {
     askPermission();
