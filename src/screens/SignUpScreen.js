@@ -50,32 +50,29 @@ const SignUpScreen = ({navigation}) => {
             'Content-Type': 'application/json',
           },
         })
-          .then(response => response.text())
+          .then(response => response.json())
           .then(data => {
-            if (
-              data === 'PHONENUMBER_DUPLICATED 이미 사용중인 전화번호입니다.'
-            ) {
-              // 전화번호 중복 에러 메시지를 처리
-              Alert.alert('회원가입 실패', '이미 사용 중인 전화번호입니다.', [
+            if (data.error === 'USERNAME_DUPLICATED') {
+              Alert.alert('회원가입 실패', data.message, [
                 {
                   text: 'Ok',
                   onPress: () => setIsLoading(false),
                 },
               ]);
-            } else if (
-              data ===
-              'DEVICE_DUPLICATED 해당 기기에서 사용중인 계정이 존재합니다.'
-            ) {
-              Alert.alert(
-                '회원가입 실패',
-                '해당 기기에서 사용중인 계정이 존재합니다.',
-                [
-                  {
-                    text: 'Ok',
-                    onPress: () => setIsLoading(false),
-                  },
-                ],
-              );
+            } else if (data.error === 'PHONENUMBER_DUPLICATED') {
+              Alert.alert('회원가입 실패', data.message, [
+                {
+                  text: 'Ok',
+                  onPress: () => setIsLoading(false),
+                },
+              ]);
+            } else if (data.error === 'DEVICE_DUPLICATED') {
+              Alert.alert('회원가입 실패', data.message, [
+                {
+                  text: 'Ok',
+                  onPress: () => setIsLoading(false),
+                },
+              ]);
             } else {
               setIsLoading(false);
               Alert.alert('회원가입 완료');
