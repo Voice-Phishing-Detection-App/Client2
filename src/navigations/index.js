@@ -185,7 +185,7 @@ const Navigation = () => {
             .then(response => response.json())
             .then(data => {
               console.log(data); // 서버 응답 출력
-              Alert.alert(data.level + '단계 보이스피싱 위험 감지');
+              // Alert.alert(data.level + '단계 보이스피싱 위험 감지');
             })
             .catch(error => {
               console.error('doubt' + error);
