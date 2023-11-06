@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {GRAY} from '../color';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const ListDetailScreen = ({route, navigation}) => {
   const {title} = route.params;
@@ -12,8 +13,9 @@ const ListDetailScreen = ({route, navigation}) => {
       <View style={styles.dateview}>
         <Text style={styles.date}>{registrationDate}</Text>
       </View>
-
-      <Text style={styles.content}>{content}</Text>
+      <ScrollView>
+        <Text style={styles.content}>{content}</Text>
+      </ScrollView>
     </View>
   );
 };

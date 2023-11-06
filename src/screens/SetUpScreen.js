@@ -3,9 +3,9 @@ import {GRAY, PRIMARY, WHITE} from '../color';
 import {useState} from 'react';
 
 const SetUpScreen = () => {
-  const [isEnabled1, setIsEnabled1] = useState(false);
-  const [emergency, setIEmergency] = useState(false);
-  const [calling, setCalling] = useState(false);
+  const [isEnabled1, setIsEnabled1] = useState(true); //임의지정
+  const [emergency, setIEmergency] = useState(true); //임의지정
+  const [calling, setCalling] = useState(true); //임의지정
 
   const toggleSwitch1 = () => setIsEnabled1(previousState => !previousState);
   const toggleSwitch2 = () => setIEmergency(previousState => !previousState);

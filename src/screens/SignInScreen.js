@@ -58,12 +58,12 @@ const SignInScreen = ({navigation}) => {
               setIsLoading(false);
               navigation.navigate('Main');
             } catch (e) {
-              Alert.alert('로그인 실패 token');
+              Alert.alert('로그인 실패 token', e);
               setIsLoading(false);
             }
           })
           .catch(error => {
-            Alert.alert('로그인 실패 통신');
+            Alert.alert('로그인 실패 통신', error);
             setIsLoading(false);
           });
       } catch (e) {

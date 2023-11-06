@@ -1,4 +1,4 @@
-import {StyleSheet, TextInput, View, ScrollView} from 'react-native';
+import {StyleSheet, TextInput, View, ScrollView, Alert} from 'react-native';
 import ReportBox from '../components/ReportBox';
 import {useState} from 'react';
 import IconText from '../components/IconText';
@@ -131,7 +131,7 @@ const ReportScreen = ({route, navigation}) => {
           .then(data => {
             // API 응답 처리
             console.log(data);
-            alert('신고가 접수되었습니다. 감사합니다.');
+            Alert.alert('신고가 접수되었습니다. 감사합니다.');
             setType('REPORT_TYPE_FRAUD');
             setFilteredObject([]);
             setContent('');
@@ -155,8 +155,8 @@ const ReportScreen = ({route, navigation}) => {
         fetch(`${url}/report/add/withoutDoubt`, {
           method: 'POST',
           body: JSON.stringify({
-            type: type, //바꿔야함 영어뭐시기로
-            title: selectDoubt,
+            type: type,
+            title: ktype,
             content: content,
             phoneNumber: phoneNumber,
           }), // 여기 통신할거 json 형식으로 넣기
@@ -169,7 +169,7 @@ const ReportScreen = ({route, navigation}) => {
           .then(data => {
             // API 응답 처리
             console.log(data);
-            alert('신고가 접수되었습니다. 감사합니다.');
+            Alert.alert('신고가 접수되었습니다. 감사합니다.');
             setType('REPORT_TYPE_FRAUD');
             setFilteredObject([]);
             setContent('');
@@ -213,7 +213,7 @@ const ReportScreen = ({route, navigation}) => {
             selectedValue={selectDoubt}
             onValueChange={(itemValue, itemIndex) => {
               //doubtlist 돌면서 doubtID같은거 찾아서 그 안에 있는 object 만 가져오기
-              // doubtId와 일치하는 객체만 가져오기
+              //doubtId와 일치하는 객체만 가져오기
               setFilteredObject(list.find(item => item.title === itemValue));
               setSelectDoubt(itemValue);
               setPhoneNumber(filteredObject.phoneNumber);
