@@ -149,9 +149,13 @@ const Navigation = () => {
               Authorization: `Bearer ${value}`, // 토큰 사용
             },
           })
-            .then(response => response.json())
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`${response.status}`);
+              }
+              return response.json();
+            })
             .then(data => {
-              console.log('data', data);
               sendToMachineLearning(data.text);
               setMostRecentFile(null);
             })
@@ -182,7 +186,12 @@ const Navigation = () => {
               Authorization: `Bearer ${value}`,
             },
           })
-            .then(response => response.json())
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`${response.status}`);
+              }
+              return response.json();
+            })
             .then(data => {
               console.log(data); // 서버 응답 출력
               // Alert.alert(data.level + '단계 보이스피싱 위험 감지');

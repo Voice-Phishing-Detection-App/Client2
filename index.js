@@ -27,7 +27,12 @@ const fcmget = async () => {
       'Content-Type': 'application/json',
     },
   })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`${response.status}`);
+      }
+      return response.json();
+    })
     .then(data => {
       console.log('성공', data);
     })

@@ -67,7 +67,12 @@ const ReportScreen = ({route, navigation}) => {
             Authorization: `Bearer ${value}`, // 토큰 사용
           },
         })
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`${response.status}`);
+            }
+            return response.json();
+          })
           .then(data => {
             // API 응답 처리
             //반복문 돌면서 ? doubtID같은거?
@@ -127,7 +132,12 @@ const ReportScreen = ({route, navigation}) => {
             Authorization: `Bearer ${value}`, // 토큰 사용
           },
         })
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`${response.status}`);
+            }
+            return response.json();
+          })
           .then(data => {
             // API 응답 처리
             console.log(data);
@@ -165,7 +175,12 @@ const ReportScreen = ({route, navigation}) => {
             Authorization: `Bearer ${value}`, // 토큰 사용
           },
         })
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`${response.status}`);
+            }
+            return response.json();
+          })
           .then(data => {
             // API 응답 처리
             console.log(data);

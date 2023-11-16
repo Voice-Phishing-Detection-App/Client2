@@ -133,7 +133,12 @@ const EmergencyNumberScreen = () => {
             Authorization: `Bearer ${value}`, // 토큰 사용
           },
         })
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`${response.status}`);
+            }
+            return response.json();
+          })
           .then(data => {
             console.log('list 성공: ' + data);
             setList(data);
