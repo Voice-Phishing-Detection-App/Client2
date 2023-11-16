@@ -98,7 +98,7 @@ const ReportScreen = ({route, navigation}) => {
             // }
           })
           .catch(error => {
-            console.error(error);
+            console.error('doubt get error' + error);
           });
       } else {
         console.log('토큰 없음');
@@ -150,7 +150,7 @@ const ReportScreen = ({route, navigation}) => {
             setKType(null);
           })
           .catch(error => {
-            console.error(error);
+            console.error('report add error' + error);
           });
       } else {
         console.log('토큰 없음');
@@ -193,7 +193,7 @@ const ReportScreen = ({route, navigation}) => {
             setKType(null);
           })
           .catch(error => {
-            console.error(error);
+            console.error('report/add/withoutDoubt error' + error);
           });
       } else {
         console.log('토큰 없음');

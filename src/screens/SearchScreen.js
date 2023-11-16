@@ -58,7 +58,7 @@ const SearchScreen = () => {
             console.log(data);
           })
           .catch(error => {
-            console.error(error);
+            console.error('report/search' + error);
           });
       } else {
         // 토큰 없을때

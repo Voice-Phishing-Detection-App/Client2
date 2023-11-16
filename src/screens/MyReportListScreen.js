@@ -46,7 +46,7 @@ const MyReportListScreen = () => {
             setList(data);
           })
           .catch(error => {
-            console.error(error);
+            console.error('report get error' + error);
           });
       } else {
         console.log('토큰 없음');

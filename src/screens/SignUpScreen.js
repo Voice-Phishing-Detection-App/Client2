@@ -52,7 +52,7 @@ const SignUpScreen = ({navigation}) => {
         })
           .then(response => {
             if (!response.ok) {
-              throw new Error(`${response.status}`);
+              throw new Error('회원가입 오류');
             }
             return response.json();
           })
