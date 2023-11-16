@@ -47,12 +47,7 @@ const SignInScreen = ({navigation}) => {
             'Content-Type': 'application/json',
           },
         })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`${response.json().error}`);
-            }
-            return response.json();
-          })
+          .then(response => response.json())
           .then(async data => {
             const token = data.token; // 토큰 추출
             console.log('Token ' + token);
