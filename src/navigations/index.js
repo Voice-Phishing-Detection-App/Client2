@@ -11,12 +11,9 @@ import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import {url} from '../url';
 import SInfo from 'react-native-sensitive-info';
 import notifee from '@notifee/react-native';
-import {useNavigation} from '@react-navigation/native';
 const RootStack = createStackNavigator();
 
 const Navigation = () => {
-  const navigation = useNavigation();
-
   const directoryPath = `${
     Platform.OS === 'android'
       ? RNFetchBlob.fs.dirs.SDCardDir // Android의 내장 메모리 경로
@@ -39,19 +36,7 @@ const Navigation = () => {
       const body = remoteMessage?.notification?.body;
       await onDisplayNotification({title, body});
     });
-
-    const unsubscribeNotificationPress = notifee.onNotificationPress(
-      async ({payload}) => {
-        console.log('Notification Pressed:', payload);
-
-        navigateToFileScreen();
-      },
-    );
-
-    return () => {
-      unsubscribeMessage();
-      unsubscribeNotificationPress();
-    };
+    return unsubscribe;
   }, []);
 
   const onDisplayNotification = async ({title = '', body = ''}) => {
@@ -67,10 +52,6 @@ const Navigation = () => {
         channelId,
       },
     });
-  };
-
-  const navigateToFileScreen = () => {
-    navigation.navigate('Report');
   };
 
   useEffect(() => {
