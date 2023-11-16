@@ -16,8 +16,6 @@ const ReportScreen = ({route, navigation}) => {
   const [doubtList, setDoubtList] = useState([]);
   //그냥 선택해도 같이 전화번호 받아올 수 있어야함!
   const [phoneNumber, setPhoneNumber] = useState(null);
-  const [type, setType] = useState('REPORT_TYPE_FRAUD');
-  const [ktype, setKType] = useState(null);
   const [typeList, setTypeList] = useState([
     'REPORT_TYPE_FRAUD',
     'REPORT_TYPE_IMPERSONATING',
@@ -30,6 +28,8 @@ const ReportScreen = ({route, navigation}) => {
     '설치유도',
     '사고빙자',
   ]);
+  const [type, setType] = useState(typeList[0]);
+  const [ktype, setKType] = useState(ktypeList[0]);
   const [content, setContent] = useState('');
   const [list, setList] = useState([]);
   const [filteredObject, setFilteredObject] = useState([]);

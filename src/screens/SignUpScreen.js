@@ -50,16 +50,34 @@ const SignUpScreen = ({navigation}) => {
             'Content-Type': 'application/json',
           },
         })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('회원가입 오류');
-            }
-            return response.json();
-          })
+          .then(response => response.json())
           .then(data => {
-            setIsLoading(false);
-            Alert.alert('회원가입 완료');
-            navigation.push('Auth');
+            if (data.error === 'USERNAME_DUPLICATED') {
+              Alert.alert('회원가입 실패', data.message, [
+                {
+                  text: 'Ok',
+                  onPress: () => setIsLoading(false),
+                },
+              ]);
+            } else if (data.error === 'PHONENUMBER_DUPLICATED') {
+              Alert.alert('회원가입 실패', data.message, [
+                {
+                  text: 'Ok',
+                  onPress: () => setIsLoading(false),
+                },
+              ]);
+            } else if (data.error === 'DEVICE_DUPLICATED') {
+              Alert.alert('회원가입 실패', data.message, [
+                {
+                  text: 'Ok',
+                  onPress: () => setIsLoading(false),
+                },
+              ]);
+            } else {
+              setIsLoading(false);
+              Alert.alert('회원가입 완료');
+              navigation.push('Auth');
+            }
           })
           .catch(error => {
             console.error(error);
