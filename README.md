@@ -5,6 +5,10 @@
 <br>
 
 
+## 🌠 아키텍처
+<image  width=600 src=https://github.com/Voice-Phishing-Detection-App/Server/assets/97522726/8a06834d-1f9f-49be-8c47-c88c3a62d367>
+
+
 ## 🪄 실행 
 ```
 npm start react-native run-android
@@ -36,7 +40,8 @@ Add: Feat 이외의 부수적인 코드 추가, 라이브러리 추가, 새로�
 
 
 ### 📑 문서 
-- [발표자료](https://github.com/heymin2/Voice-Phishing-Detection-App/files/11901194/_._.1.pdf)
+- [발표자료_1](https://github.com/heymin2/Voice-Phishing-Detection-App/files/11901194/_._.1.pdf)
+- [발표자료_2](https://github.com/Voice-Phishing-Detection-App/Server/files/13406959/default.pptx)
 - [피그마](https://www.figma.com/file/8RuHW7hZWDgdeX7cKI2U0Q/2023%EB%85%84%EB%8F%84-%EC%A2%85%ED%95%A9%EC%84%A4%EA%B3%84%EA%B3%BC%EC%A0%9C_%EB%B3%B4%EC%9D%B4%EC%8A%A4%ED%94%BC%EC%8B%B1?type=design&node-id=0-1&mode=design&t=8KdYkAZOAYETqHtz-0)
 - [이전 버전 - expo 환경](https://github.com/Voice-Phishing-Detection-App/Client)
 
